@@ -1,0 +1,14 @@
+.env
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+backend/data/raw/
+backend/data/records/*.parquet
+.pytest_cache/
+dist/
+
+# 원본 자료(비공개)
+docs/analysis/*.docx
+docs/analysis/*.hwp

@@ -1,0 +1,10 @@
+engsys-document-review: 1
+document: docs/design/0004-api-and-analysis.md
+blob: 2af9f1c1a8ac879433e6877f6b0a64995804739c
+decision: pass
+reviewer: Claude Opus 5 (agent)
+audience: 검토자와 구현 담당자
+purpose: 이 범위와 방법으로 구현해도 되는가
+
+지표 반환 형태를 구현에 맞춰 diffPct·extra 까지 적었다. 목업과의 일치 기준을 "소수 자리" 대신 상대 오차 0.01% 와 판정 일치로 고쳤다 — 합성 잡음의 난수 소비 순서가 달라 절대값은 완전히 같지 않다. 실측: M01 190,684.7 vs 목업 190,677.3.
+

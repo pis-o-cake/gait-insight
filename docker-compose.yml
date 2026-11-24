@@ -1,0 +1,44 @@
+# 로컬망 시연용 구성. 호스트에 여는 포트는 8000 하나이며 DB 는 compose 내부망에만 있다.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-gait_insight}
+      POSTGRES_USER: ${POSTGRES_USER:-gait}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-gait}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-gait} -d ${POSTGRES_DB:-gait_insight}"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    ports:
+      # 개발 중 호스트에서 psql 로 붙기 위한 것이다. 호스트의 5432 와 겹치지 않게 5433 을 쓴다.
+      - "127.0.0.1:${DB_HOST_PORT:-5433}:5432"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-gait}:${POSTGRES_PASSWORD:-gait}@db:5432/${POSTGRES_DB:-gait_insight}
+      DATA_DIR: /app/data
+      STATIC_DIR: /app/static
+      AUTH_SECRET: ${AUTH_SECRET:?AUTH_SECRET is required}
+      AUTH_TOKEN_TTL_HOURS: ${AUTH_TOKEN_TTL_HOURS:-12}
+      WORKERS: ${WORKERS:-2}
+      DEMO_LOGIN_ID: ${DEMO_LOGIN_ID:-}
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-}
+      DEMO_DISPLAY_NAME: ${DEMO_DISPLAY_NAME:-}
+      PORT: 8000
+    volumes:
+      - ./backend/data:/app/data:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:

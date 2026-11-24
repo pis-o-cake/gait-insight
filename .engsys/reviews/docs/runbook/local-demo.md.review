@@ -1,0 +1,10 @@
+engsys-document-review: 1
+document: docs/runbook/local-demo.md
+blob: 5da130df4c356d0efd0c8ffb38df6347c686b6f9
+decision: pass
+reviewer: Claude Opus 5 (agent)
+audience: 운영 담당자
+purpose: 어떤 상황에서 어떻게 실행하고 성공·실패를 판단하는가
+
+신규. 적용 상황·전제, 실행 전 확인(.env·포트·parquet), 절차(compose·IP 확인·계정 생성), 성공 확인 5항목, 실패와 복구 6항목. 모든 명령은 이번 구현에서 실제로 실행해 본 것이며, 포트 충돌과 seed 누락은 실제로 겪은 사례다. 방화벽 절차는 macOS·Windows 모두 적었으나 Windows 는 검증하지 않았다.
+

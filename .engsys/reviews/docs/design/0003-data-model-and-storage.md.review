@@ -1,0 +1,10 @@
+engsys-document-review: 1
+document: docs/design/0003-data-model-and-storage.md
+blob: c8e61f324f968956d9a7fcb83301c44cdaab316b
+decision: pass
+reviewer: Claude Opus 5 (agent)
+audience: 검토자와 구현 담당자
+purpose: 이 범위와 방법으로 구현해도 되는가
+
+합성 기록 생성 경로(synth.py·make_records.py)와 parquet 크기 실측(약 1.5 MiB)을 데이터 준비 절에 넣었다. seed 가 운동 ID 존재를 검사하고 규칙 변경 시 캐시를 지운다는 동작을 적었다. 테이블 정의는 구현과 대조해 그대로.
+

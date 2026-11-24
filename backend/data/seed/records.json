@@ -1,0 +1,62 @@
+[
+  {
+    "id": "demo-01",
+    "name": "아침 산책",
+    "participant_code": "",
+    "condition": "정적 20초 + 자유 보행",
+    "measured_at": "2026-09-21T08:40:00+09:00",
+    "duration_sec": 600,
+    "sample_rate": 100,
+    "source": "synthetic",
+    "license": "",
+    "file_path": "records/demo-01.parquet",
+    "is_demo": true,
+    "sort_order": 1,
+    "walk_test": {"method": "10m 보행검사 + 영상 분석", "distanceM": 10, "timeSec": 9.5, "stepLengthLeftCm": 51, "stepLengthRightCm": 52},
+    "synth": {
+      "seed": 23,
+      "note": "전문가 자료 유형 1(좌우 체중 부하 불균형)의 가상 사례값(정적 42:58, 입각기 0.56/0.66초, 한발 지지 0.32/0.41초)에 맞춘 사례",
+      "profile": {"period": 0.98, "stance_l": 0.571, "stance_r": 0.673, "scale_l": 0.92, "scale_r": 1.0, "period_var": 0.008, "static_sec": 20, "static_share_l": 0.42}
+    }
+  },
+  {
+    "id": "demo-02",
+    "name": "퇴근길 걷기",
+    "participant_code": "",
+    "condition": "정적 20초 + 자유 보행",
+    "measured_at": "2026-09-19T18:15:00+09:00",
+    "duration_sec": 600,
+    "sample_rate": 100,
+    "source": "synthetic",
+    "license": "",
+    "file_path": "records/demo-02.parquet",
+    "is_demo": true,
+    "sort_order": 2,
+    "walk_test": {"method": "10m 보행검사 + 영상 분석", "distanceM": 10, "timeSec": 8.9, "stepLengthLeftCm": 60, "stepLengthRightCm": 62},
+    "synth": {
+      "seed": 11,
+      "note": "전문가 자료 유형 3(정상 보행 유지)의 가상 기록값(정적 49:51, 분당 110걸음, 입각기 0.63/0.64초, 1.12 m/s)에 맞춘 사례",
+      "profile": {"period": 1.09, "stance_l": 0.578, "stance_r": 0.587, "scale_l": 1.0, "scale_r": 1.0, "period_var": 0.008, "static_sec": 20, "static_share_l": 0.49}
+    }
+  },
+  {
+    "id": "demo-03",
+    "name": "공원 한 바퀴",
+    "participant_code": "",
+    "condition": "정적 20초 + 자유 보행",
+    "measured_at": "2026-09-17T10:05:00+09:00",
+    "duration_sec": 600,
+    "sample_rate": 100,
+    "source": "synthetic",
+    "license": "",
+    "file_path": "records/demo-03.parquet",
+    "is_demo": true,
+    "sort_order": 3,
+    "walk_test": {"method": "10m 보행검사 + 영상 분석", "distanceM": 10, "timeSec": 12.5, "stepLengthLeftCm": 48, "stepLengthRightCm": 60},
+    "synth": {
+      "seed": 31,
+      "note": "전문가 자료 유형 2(좌우 보장 차이)의 가상 사례값(보장 48/60 cm, 0.80 m/s)에 맞춘 사례. 왼발 걸음 시간이 짧다",
+      "profile": {"period": 1.35, "stance_l": 0.58, "stance_r": 0.64, "scale_l": 1.0, "scale_r": 1.0, "period_var": 0.008, "step_offset": 0.54, "static_sec": 20, "static_share_l": 0.49}
+    }
+  }
+]

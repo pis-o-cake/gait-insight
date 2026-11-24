@@ -1,0 +1,14 @@
+.git/
+.engsys/
+.githooks/
+.claude/
+docs/
+node_modules/
+**/node_modules/
+**/.venv/
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+backend/data/raw/
+.env
+*.md

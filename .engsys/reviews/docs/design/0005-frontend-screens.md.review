@@ -1,0 +1,10 @@
+engsys-document-review: 1
+document: docs/design/0005-frontend-screens.md
+blob: 83e0c4f6bd6c3270f798c9711bd5c879a53c9b7c
+decision: pass
+reviewer: Claude Fable 5.1 (agent)
+audience: 검토자와 구현 담당자
+purpose: 이 범위와 방법으로 구현해도 되는가
+
+#/login 라우트·가드, LoginPage, 데이터 창구 auth 함수(목업 모드는 가짜 사용자), auth 상태, 401 처리 추가.
+

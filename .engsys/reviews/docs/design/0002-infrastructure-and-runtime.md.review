@@ -1,0 +1,10 @@
+engsys-document-review: 1
+document: docs/design/0002-infrastructure-and-runtime.md
+blob: 9bcbd1313ff7cc4811eac481326b864f2b738b91
+decision: pass
+reviewer: Claude Opus 5 (agent)
+audience: 검토자와 구현 담당자
+purpose: 이 범위와 방법으로 구현해도 되는가
+
+구현 결과 반영: 호스트 DB 포트 5433(호스트의 기존 5432 충돌 회피), uv pip install, .dockerignore 실제 항목, entrypoint 실제 순서, 테스트 DB 생성과 tests 마운트. 환경 변수 표의 개발용 DATABASE_URL 포트도 5433 으로 고쳤다.
+

@@ -1,0 +1,10 @@
+engsys-document-review: 1
+document: README.md
+blob: 9bded6e77dee10e495bd0f4ee6dbe389e7f6a835
+decision: pass
+reviewer: Claude Opus 5 (agent)
+audience: 프로젝트 책임자와 참여자
+purpose: 무엇을 제공하며 어디까지 하면 완료인가
+
+구현 시작에 맞춰 "실행" 절(compose 한 명령, 접속 주소, runbook 링크)을 넣고 "상태"를 실제 구현 결과로 고쳤다. 문서 표에 runbook 행 추가. 범위·완료 기준 표는 그대로.
+

@@ -1,0 +1,10 @@
+engsys-document-review: 1
+document: docs/prototype/mockup-player.md
+blob: 7dc83d0c14350d81e3f49f29dbf083b37531235e
+decision: pass
+reviewer: Claude Fable 5.1 (agent)
+audience: 디자이너와 구현 담당자
+purpose: 어떤 화면을 확인했고 실제 구현에 무엇이 필요한가
+
+목업에 없는 항목에 로그인 화면·내비 사용자 표시 추가.
+

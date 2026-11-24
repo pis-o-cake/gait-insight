@@ -1,0 +1,43 @@
+[project]
+name = "gait-insight-backend"
+version = "0.1.0"
+description = "보행 기록 분석 프로토타입 API"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "gunicorn>=23.0",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "sqlalchemy[asyncio]>=2.0.36",
+    "asyncpg>=0.30",
+    "alembic>=1.14",
+    "numpy>=2.1",
+    "pandas>=2.2",
+    "pyarrow>=18.0",
+    "bcrypt>=4.2",
+    "pyjwt>=2.10",
+    "loguru>=0.7",
+    "python-multipart>=0.0.12",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "httpx>=0.28",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+# 엔진을 session fixture 에서 만들므로 테스트도 같은 이벤트 루프에서 돌아야 한다.
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+testpaths = ["tests"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]

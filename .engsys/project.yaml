@@ -1,0 +1,88 @@
+system:
+  profile: 'baseline'
+
+project:
+  name: 'gait-insight'
+  source-of-truth:
+    backend: 'backend/app/'
+    frontend: 'frontend/src/'
+    content: 'backend/data/'
+
+commands:
+  verify: 'sh scripts/verify.sh'
+
+vcs:
+  commit:
+    subject-language: 'ko'
+    subject-ending: 'noun'
+    scopes:
+      - 'docs'
+      - 'engsys'
+      - 'backend'
+      - 'frontend'
+      - 'analysis'
+      - 'exercise'
+      - 'data'
+      - 'mockup'
+      - 'scripts'
+  branch:
+    model: 'single-main'
+    roles:
+      - role: 'production'
+        branch: 'main'
+    protected:
+      - 'main'
+  merge-request:
+    target: 'main'
+
+documentation:
+  architecture: 'docs/architecture/README.md'
+  generated: []
+  authoring:
+    assign:
+      - path: 'README.md'
+        type: 'project-scope'
+      - path: 'docs/adr'
+        type: 'decision-record'
+      - path: 'docs/architecture'
+        type: 'architecture'
+      - path: 'docs/design'
+        type: 'design-proposal'
+      - path: 'docs/briefs'
+        type: 'brief'
+      - path: 'docs/prototype'
+        type: 'prototype-record'
+      - path: 'docs/runbook'
+        type: 'runbook'
+      - path: 'docs/references'
+        type: 'guide'
+      - path: 'docs/mockup/README.md'
+        type: 'guide'
+    exempt:
+      - '.claude'
+      - '.githooks'
+      - 'docs/mockup/*.html'
+      - 'docs/mockup/archive'
+      - 'docs/mockup/build'
+      - 'docs/analysis'
+      - 'docs/gait-insight-service-review-v0.5.html'
+      - 'frontend'
+      - 'backend'
+  review:
+    scopes:
+      - 'README.md'
+      - 'docs/adr'
+      - 'docs/architecture'
+      - 'docs/design'
+      - 'docs/briefs'
+      - 'docs/prototype'
+      - 'docs/references'
+      - 'docs/runbook'
+      - 'docs/mockup/README.md'
+  lifecycle:
+    design:
+      path: 'docs/design'
+      frozen-status: ['implemented']
+    adr:
+      path: 'docs/adr'
+      frozen-status: ['accepted']

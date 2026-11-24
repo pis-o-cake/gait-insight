@@ -1,0 +1,10 @@
+engsys-document-review: 1
+document: docs/briefs/2026-09-18-kickoff.md
+blob: 38ded13c78254f9e77314493d4074bd7deeac970
+decision: pass
+reviewer: Claude Fable 5.1 (agent)
+audience: 상급자와 의사결정자
+purpose: 현재 결과와 영향은 무엇이며 어떤 판단·지원이 필요한가
+
+도입 문단의 설계 링크를 docs/design 폴더로 일반화. 본문 변경 없음.
+

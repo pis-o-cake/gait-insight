@@ -1,0 +1,10 @@
+engsys-document-review: 1
+document: docs/design/0001-system-architecture.md
+blob: 9467d80b28ecc2897683ad3421ca7e160d32a674
+decision: pass
+reviewer: Claude Fable 5.1 (agent)
+audience: 검토자와 구현 담당자
+purpose: 이 범위와 방법으로 구현해도 되는가
+
+목표에 로그인 항목, 범위 밖 재정의, 결정 요약 인증 행, 도메인 다이어그램·표에 auth와 current_user 의존, 검증·구현 순서에 인증 반영.
+

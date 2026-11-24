@@ -1,0 +1,10 @@
+engsys-document-review: 1
+document: docs/architecture/README.md
+blob: dd015715af5ee5f06c595142ebb2dac6d14c4379
+decision: pass
+reviewer: Claude Opus 5 (agent)
+audience: 개발자와 운영자
+purpose: 지금 어떤 구성요소가 어떤 책임과 경계로 동작하는가
+
+기동 절차를 runbook 으로 연결하고, 데이터 준비 도구 행을 실제 구현(synth·make_records·seed)에 맞췄다. PhysioNet 관련 도구는 아직 없다고 명시.
+

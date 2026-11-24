@@ -1,0 +1,10 @@
+engsys-document-review: 1
+document: docs/design/0001-prototype-program-design.md
+blob: db5cc0e4438ec22d4e36c6fd363759a32f9da3a2
+decision: pass
+reviewer: Claude Fable 5.1 (agent)
+audience: 검토자와 구현 담당자
+purpose: 이 범위와 방법으로 구현해도 되는가
+
+저장 결정을 PostgreSQL+parquet 하이브리드로 뒤집고 데이터 모델 절(ERD 5테이블, 제약, 마이그레이션·seed)을 추가. 폴더 구조에 compose·Dockerfile·entrypoint·alembic·seed 반영. API에 캐시·규칙 세트 버전·409 추가. 실행 모드 표(시연/개발) 추가. 결정과 대안 절 1을 Docker Compose 단일 스택으로 다시 써 사용자 요구(실행 방식 통일)를 배경에 적고 Nginx 보류 이유를 대안 표에 넣었다. 절 2 대안에 파일만·SQLite·시계열 DB화 3개. 임계값 출처를 rules.yaml에서 rule_set.thresholds로 전면 교체(잔여 문자열 grep 0).
+
