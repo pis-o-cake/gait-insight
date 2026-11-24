@@ -1,10 +1,13 @@
 engsys-document-review: 1
 document: README.md
-blob: 9bded6e77dee10e495bd0f4ee6dbe389e7f6a835
+blob: e86e7e342ba878714252b05daff4f071068a1f01
 decision: pass
-reviewer: Claude Opus 5 (agent)
-audience: 프로젝트 책임자와 참여자
+reviewer: Claude Opus 5.5 (agent)
+audience: 프로젝트를 처음 보는 외부 방문자와 참여자
 purpose: 무엇을 제공하며 어디까지 하면 완료인가
 
-구현 시작에 맞춰 "실행" 절(compose 한 명령, 접속 주소, runbook 링크)을 넣고 "상태"를 실제 구현 결과로 고쳤다. 문서 표에 runbook 행 추가. 범위·완료 기준 표는 그대로.
+README를 영문 기본본(README.md)과 한국어본(README.ko.md)으로 나눠 GitHub 관례대로 상단 언어 전환 링크와 기술 스택 배지를 넣었다.
+버전은 backend/pyproject.toml, frontend/package.json, Dockerfile, docker-compose.yml의 선언값과 대조했다.
+범위·완료 기준 절은 engsys 절 검사에 맞게 "Scope (범위)", "Definition of Done (DoD)"로 두고 한국어본 표를 옮겼다.
+목업 Pages 주소 절을 추가하고, 레포에서 제외한 docs/analysis 원본 자료는 경로 대신 "로컬 보관·레포 제외"로 적었다.
 

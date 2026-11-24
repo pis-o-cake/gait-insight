@@ -3,76 +3,117 @@ type: project-scope
 status: draft
 ---
 
+**English** | [한국어](README.ko.md)
+
 # gait-insight
 
-공개 보행 데이터를 분석해 관찰된 특징과 추천 운동을 웹·모바일 웹으로 보여주는 노인재활운동과 캡스톤디자인 프로토타입. 로컬 PC에서 Docker Compose로 서버와 DB를 띄우고 같은 로컬망의 PC·휴대폰 브라우저가 접속하는 시연용 구성이며, 상용 배포는 범위 밖이다.
+A capstone design prototype for a geriatric rehabilitation exercise department. It analyzes **public gait data** and shows the **observed gait features** and **recommended exercises** on the web and mobile web — built with **FastAPI + React + PostgreSQL** and run locally with **Docker Compose**.
 
-핵심 흐름: **기록 선택 → 발바닥 하중 시각화 → 관찰된 특징 설명 → 추천 운동**.
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-D71F00?logo=sqlalchemy&logoColor=white)](https://www.sqlalchemy.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
+[![Platform](https://img.shields.io/badge/Platform-Web%20%7C%20Mobile%20Web-555)](#mockup-demo)
 
-숫자는 프로그램이 계산하고, 추천 운동은 학과가 검토한 기준으로 연결한다. AI를 쓴다면 계산 결과와 추천 운동을 쉬운 말로 설명하는 역할만 맡기며, AI 없이 준비된 문장으로도 동작한다. 데이터는 PhysioNet 파킨슨병 보행 연구 자료에서 **비교용으로 측정한 건강한 사람 73명의 기록만** 사용한다. 합의 경위와 미확정 안건은 [킥오프 브리프](docs/briefs/2026-09-18-kickoff.md)에 있다.
+> A demo prototype for a local network. Public deployment of the app server is out of scope.
 
-## 전체 범위
+Core flow: **select a record → visualize plantar pressure → explain observed features → recommend exercises**.
 
-포함하는 것:
+- **Numbers come from code.** Exercise recommendations follow criteria reviewed by the department.
+- **AI is optional.** If used, it only rephrases computed results in plain language; prepared text works without it.
+- **Data**: only the **73 healthy control subjects** from the PhysioNet Parkinson's disease gait study.
+- Background and open issues: [kickoff brief](docs/briefs/2026-09-18-kickoff.md) (Korean).
 
-| 영역 | 내용 |
+## Mockup demo
+
+Static HTML — opens directly in a browser. Demo login: `admin` / `0000`.
+
+| Target | URL |
 | --- | --- |
-| 데이터 | PhysioNet gaitpdb v1.0.0의 건강한 대조군 기록만 선별·변환. 원본 출처와 라이선스(ODC-By) 표기 |
-| 화면 | 기록 선택, 보행 분석(히트맵 재생·개요/확대 그래프·지표 타일·요약), 운동정보(특징별 스텝 플로우). 목업의 플레이어 골격·기본 테마 |
-| 로그인 | 아이디·비밀번호 가입·로그인, bcrypt 해시, 쿠키 세션. 로그인한 사용자만 화면·API 사용 |
-| 분석 | 전문가 자료 3종 기준 지표 M01~M10(인솔 8 + 보행검사 입력 2)과 보행 유형 판정(T1 체중 부하 불균형·T2 보장 차이·T3 정상 유지). 계산 불가 사유 전달 |
-| 운동정보 | 전문가 자료의 운동 18종(목적·방법·운동량·주의), 유형→운동 프로그램 연결, 권유 이유와 재평가 항목. 검토 상태 표시 |
-| 저장 | PostgreSQL(기록 메타·운동 콘텐츠·규칙 세트·분석 결과) + parquet(센서 시계열). Alembic 마이그레이션과 seed 도구 |
-| 실행 | `docker compose up --build`로 `db` + `app` 컨테이너 기동. 호스트 8000 포트 하나 공개 |
-| 접속 | 호스트 PC의 컨테이너에 같은 로컬망의 PC·휴대폰 브라우저가 접속 |
-| 문서 | Engineering System 계약에 따른 아키텍처·설계·ADR·프로토타입 기록·runbook |
+| Phone | <https://pis-o-cake.github.io/gait-insight/mockup/gait-insight-mobile.html> |
+| Desktop · Tablet | <https://pis-o-cake.github.io/gait-insight/mockup/gait-insight-demo.html> |
 
-포함하지 않는 것: 인솔 하드웨어·센서 교정·블루투스 실시간 연결, 러닝·스쿼트·런지 분석, 질병 진단·낙상 위험도·교정 효과 검증, 운동 전후 개선 분석, 네이티브 앱, 비밀번호 규칙·이메일 인증·비밀번호 찾기·권한 등급, 업로드·개인 기록 저장, 인터넷 공개 배포, LLM 설명(인터페이스만 둔다).
+- Share the **link**, not the file. Attachment previews (KakaoTalk, mail, iOS Files) do not run JavaScript and show a blank page.
+- GitHub Pages serves the `docs/` folder of `main`. Changes appear 1–2 minutes after a push.
 
-## 기능별 완료 기준
+## Scope (범위)
 
-| 기능 | 완료 기준 |
+| Area | Included |
 | --- | --- |
-| 데이터 준비 | 대조군 선별 기준이 demographics 표 기준으로 문서화되고, 변환된 기록이 열 수·시간축·단위 검증을 통과한다. 제외 기록과 사유가 보고서에 남는다 |
-| 로그인 | 가입 후 로그인하면 기록 목록이 열리고, 미로그인·쿠키 만료 상태에서는 모든 화면이 로그인으로 돌아간다. 비밀번호에 아무 규칙도 걸지 않는다 |
-| 기록 선택 | 목록에 기록 표시명·조건·길이·출처가 보이고, 6초 스파크라인 미리보기가 그려진다. 휴대폰 폭에서 행이 잘리지 않는다 |
-| 보행 분석 | 재생·일시정지·처음으로·시크·배속(0.5~30배)이 동작하고 히트맵·그래프·시크바가 같은 시각을 가리킨다. 지표 10개가 측정 묶음별로 좌·우 값과 상태 칩으로 표시되며 계산 불가 시 사유가 보인다 |
-| 운동정보 | 관찰된 특징마다 관찰 근거(수치)·권유 이유·운동 카드가 한 블록으로 보이고, 카드에 검토 상태 태그가 있다. 관찰이 없으면 일반 운동만 보인다 |
-| 지표 계산 | 합성 신호 테스트에서 목업 값과 일치하고, 짧은 기록·접촉 없음 예외가 사유 코드로 반환된다 |
-| 기동·DB 초기화 | Docker만 있는 빈 PC에서 `docker compose up --build` 한 번으로 마이그레이션·seed·서버가 올라오고, 규칙 세트를 바꾸면 재기동 없이 분석 결과가 새 버전으로 계산된다 |
-| 로컬망 접속 | runbook대로 기동한 서버에 같은 망의 휴대폰이 `http://<IP>:8000`으로 접속해 3화면을 완주한다 |
-| 문서 | `engsys verify`가 통과한다 |
+| Data | Healthy controls only from PhysioNet gaitpdb v1.0.0, selected and converted. Source and license (ODC-By) credited |
+| Screens | Record list, gait analysis (heatmap playback, overview/zoom charts, metric tiles, summary), exercise guide (step flow per feature) |
+| Login | ID/password sign-up and login, bcrypt hashing, cookie session. Screens and API require login |
+| Analysis | Metrics M01–M10 based on three expert references (8 insole + 2 gait-test inputs) and gait type classification (T1 load imbalance · T2 step-length difference · T3 normal). Reasons returned when a metric cannot be computed |
+| Exercise | 18 exercises from the expert references (purpose, method, dosage, cautions), type → program mapping, rationale and re-assessment items, review status |
+| Storage | PostgreSQL (record metadata, exercise content, rule sets, results) + parquet (sensor time series). Alembic migrations and seed tools |
+| Runtime | `docker compose up --build` starts `db` + `app`. Only host port 8000 is exposed |
 
-진행 상태는 아래 "상태" 절에 적는다.
+**Not included**: insole hardware, sensor calibration, Bluetooth streaming · running/squat/lunge analysis · disease diagnosis, fall risk, intervention efficacy · before/after comparison · native apps · password rules, email verification, password reset, roles · uploads and personal record storage · public deployment of the app server · LLM explanations (interface only).
 
-## 문서
+## Definition of Done (DoD)
 
-문서는 [Engineering System](https://github.com/pis-o-cake/engineering-system) 계약(`.engsys/project.yaml`)에 따라 유형별 폴더에 둔다. 새 문서는 `engsys docs new --type <type> <slug>`로 시작하고 `engsys verify`로 검사한다.
+| Feature | Done when |
+| --- | --- |
+| Data preparation | Control selection criteria are documented against the demographics table; converted records pass column-count, time-axis and unit checks; excluded records and reasons are reported |
+| Login | After sign-up and login the record list opens; when logged out or the cookie expires, every screen returns to login. No password rules |
+| Record list | Each row shows name, condition, duration and source with a 6-second sparkline preview; rows do not clip at phone width |
+| Gait analysis | Play, pause, restart, seek and speed (0.5–30×) work; heatmap, charts and seek bar point to the same time. All 10 metrics show left/right values and status chips per group, with a reason when not computable |
+| Exercise guide | Each observed feature shows evidence (numbers), rationale and exercise cards in one block, with a review-status tag. With no observations, only general exercises are shown |
+| Metric computation | Matches mockup values on synthetic-signal tests; short records and no-contact cases return reason codes |
+| Startup · DB init | On a clean PC with only Docker, one `docker compose up --build` runs migrations, seeding and the server; changing the rule set recomputes results as a new version without a restart |
+| LAN access | A phone on the same network opens `http://<IP>:8000` and completes all three screens, following the runbook |
+| Docs | `engsys verify` passes |
 
-| 유형 | 위치 | 답하는 질문 |
-| --- | --- | --- |
-| 현행 아키텍처 | [docs/architecture/README.md](docs/architecture/README.md) | 지금 어떤 구성요소가 어떤 책임으로 동작하는가 |
-| 설계 제안 | [docs/design](docs/design) | 이 범위와 방법으로 구현해도 되는가. 0001 아키텍처, 0002 인프라·실행, 0003 데이터 모델, 0004 API·분석, 0005 화면 |
-| 결정 기록 | `docs/adr` | 설계 동결 후 중요한 변경을 왜 했는가. 아직 없음 |
-| 프로토타입 기록 | [docs/prototype/mockup-player.md](docs/prototype/mockup-player.md) | 목업의 화면·상태와 구현 인계 사항 |
-| 운영 절차 | [docs/runbook/local-demo.md](docs/runbook/local-demo.md) | 시연 PC에서 어떻게 띄우고 무엇으로 성공을 판단하는가 |
-| 킥오프 브리프 | [docs/briefs/2026-09-18-kickoff.md](docs/briefs/2026-09-18-kickoff.md) | 합의된 방향, 협의 안건, 사업비 질문 |
-| 목업 | [docs/mockup/README.md](docs/mockup/README.md) | 단일 HTML 목업 실행·테마·빌드 구조. 기본 테마 코발트가 구현 기준 |
-| 디자인 레퍼런스 | [docs/references/design-references.md](docs/references/design-references.md) | 참고한 사이트와 가져온 것 |
-| 서비스 검토안 v0.5 | [docs/gait-insight-service-review-v0.5.html](docs/gait-insight-service-review-v0.5.html) | 기획자 전달용 HTML |
-| 원본 계획서 | `docs/analysis/캡스톤디자인 과제 계획서_노인재활운동과.hwp` | 학과 원안 |
-
-## 실행
+## Getting started
 
 ```sh
-cp .env.example .env     # AUTH_SECRET 을 채운다
+cp .env.example .env     # set AUTH_SECRET
 docker compose up --build
 ```
 
-`http://localhost:8000` 에서 화면이 열리고 `/docs` 가 API 문서다. 같은 로컬망의 휴대폰은 `http://<호스트IP>:8000` 으로 접속한다. 자세한 절차와 문제 해결은 [시연 runbook](docs/runbook/local-demo.md)에 있다.
+- App: `http://localhost:8000`
+- API docs (Swagger UI): `http://localhost:8000/docs`
+- Phone on the same LAN: `http://<host-ip>:8000`
+- Details and troubleshooting: [demo runbook](docs/runbook/local-demo.md) (Korean)
 
-## 상태
+## Project structure
 
-세 화면(로그인·기록 목록·분석·추천 운동)과 API가 동작한다. 기록은 실측이 아니라 전문가 자료(`docs/analysis` 상세판 3종)의 가상 사례값에 맞춘 합성 신호 3개이며, 각각 유형 1·3·2로 판정된다. 지표·유형·운동 프로그램은 자료를 따르고, 자료에 판정 수치가 없어 임계값은 학과 확인 전 시연값이다.
+```
+backend/    FastAPI app (per-domain: api · service · crud · schemas · models), Alembic, seed data
+frontend/   React + TypeScript (Vite)
+docs/       architecture, design proposals, runbook, mockups (served by GitHub Pages)
+scripts/    verify.sh — project verification
+```
 
-남은 일은 유형 판정 임계값을 학과에서 확인받아 새 규칙 세트로 반영하기, PhysioNet 대조군 기록을 계속 쓸지 결정하기(정적 측정과 보행검사 입력이 없어 M01·M09·M10을 낼 수 없다), 그리고 LLM 설명 연결 여부 결정이다. 운동 후 재평가는 다시 잴 항목만 보여 주고 전후 비교는 하지 않는다.
+## Documentation
+
+Documents follow the [Engineering System](https://github.com/pis-o-cake/engineering-system) contract (`.engsys/project.yaml`). All documents are in Korean.
+
+| Type | Location |
+| --- | --- |
+| Architecture | [docs/architecture/README.md](docs/architecture/README.md) |
+| Design proposals | [docs/design](docs/design) — 0001 architecture, 0002 infra, 0003 data model, 0004 API · analysis, 0005 screens |
+| Prototype record | [docs/prototype/mockup-player.md](docs/prototype/mockup-player.md) |
+| Runbook | [docs/runbook/local-demo.md](docs/runbook/local-demo.md) |
+| Mockup | [docs/mockup/README.md](docs/mockup/README.md) |
+| Design references | [docs/references/design-references.md](docs/references/design-references.md) |
+| Service review v0.5 | [docs/gait-insight-service-review-v0.5.html](docs/gait-insight-service-review-v0.5.html) |
+
+Source materials (the department's original proposal and the expert references) are kept locally and excluded from this repository.
+
+## Status
+
+- Working: login, record list, analysis and exercise screens, API.
+- Records are **three synthetic signals**, not real measurements, tuned to the case values in the expert references; they classify as types 1, 3 and 2.
+- Classification thresholds are **demo values** — the references give no cut-offs and the department has not confirmed them yet.
+- Re-assessment lists the items to re-measure; no before/after comparison.
+
+Open items:
+
+- Confirm thresholds with the department and ship them as a new rule set.
+- Decide whether to keep the PhysioNet controls — without a static stance or gait-test inputs, M01, M09 and M10 cannot be computed.
+- Decide whether to connect LLM explanations.

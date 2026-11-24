@@ -42,6 +42,8 @@ documentation:
     assign:
       - path: 'README.md'
         type: 'project-scope'
+      - path: 'README.ko.md'
+        type: 'project-scope'
       - path: 'docs/adr'
         type: 'decision-record'
       - path: 'docs/architecture'
@@ -71,6 +73,7 @@ documentation:
   review:
     scopes:
       - 'README.md'
+      - 'README.ko.md'
       - 'docs/adr'
       - 'docs/architecture'
       - 'docs/design'

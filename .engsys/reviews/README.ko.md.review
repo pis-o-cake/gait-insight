@@ -1,0 +1,13 @@
+engsys-document-review: 1
+document: README.ko.md
+blob: 40572e038217b2095dc3c71e714d55e609b6ae01
+decision: pass
+reviewer: Claude Opus 5.5 (agent)
+audience: 프로젝트 책임자와 참여자
+purpose: 무엇을 제공하며 어디까지 하면 완료인가
+
+기존 README 본문을 개조식·명사형 종결로 다시 쓴 한국어본. 사실관계(범위·완료 기준·상태)는 바꾸지 않았다.
+목업 Pages 주소 절, 기술 스택 배지, 프로젝트 구조 절을 추가했다.
+레포에서 .gitignore로 제외한 docs/analysis 원본(hwp·docx)은 링크 대신 "레포 미포함, 로컬 보관"으로 표기했다.
+임계값 미확정은 "학과 확인 안 함"으로 적어 확인하지 않은 것을 확인한 것처럼 보이지 않게 했다.
+
